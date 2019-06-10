@@ -2,26 +2,31 @@
     <div class="card-header" style="padding:0;">
         <h2 class="mb-0">
             {% if parent_id %}
+            <!-- 부모 category가 있다면, 클릭했을 때 나오는 자식 category -->
             <a class="btn btn-link" href="{{category.get_absolute_url}}">
-                {{category}}
+                <small>{{category}}</small>
+                <span class="badge badge-primary badge-pill">{{category.post_set.count}}</span>
             </a>
             {% else %}
             <button class="btn btn-link" type="button" data-toggle="collapse"
                     data-target=".category_sub_{{category.id}}" aria-expanded="false">
-                {{category}}
+                <small>{{category}}</small>
+                <span class="badge badge-primary badge-pill">{{category.post_set.count}}</span>
             </button>
             {% endif %}
         </h2>
     </div>
 </div>
 {% comment %}
-category = models.ForeignKey(Category, on_delete=models.SET_NULL,)
+categories = Category.objects.filter(parent_category=None)
+for category in categories:
+category = models.ForeignKey(Category, on_delete=models.SET_NULL, ...)
 category.category_set.all()
 {% endcomment%}
 {% if category.category_set %}
-{% with category.id as parent_id %}
-{% for category in category.category_set.all %}
-{% include 'post/part_category_list.html' %}
-{% endfor %}
-{% endwith %}
+    {% with category.id as parent_id %}
+        {% for category in category.category_set.all %}
+            {% include 'post/part_category_list.html' %}
+        {% endfor %}
+    {% endwith %}
 {% endif %}

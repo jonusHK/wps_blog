@@ -19,10 +19,13 @@ from django.views.static import serve
 from django.urls import path, re_path, include
 from django.conf import settings
 
+from ckeditor_uploader import views as uploader_views
+
 urlpatterns = [
     path('comment/', include('comment.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    # 라이브 상태일 때, serve 뷰 사용하여 연결
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root':settings.MEDIA_ROOT}),
     path('', include('post.urls')),
 ]

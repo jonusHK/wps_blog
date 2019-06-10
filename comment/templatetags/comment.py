@@ -22,5 +22,3 @@ def show_comment(context, content_type, object_id):
 
 
 
-
-

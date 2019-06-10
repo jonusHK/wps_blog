@@ -44,7 +44,7 @@ class PostDetail(DetailView):
 class PostUpdate(UpdateView):
     model = Post
     template_name = 'post/post_update.html'
-    fields = ['title','text','tag']
+    fields = ['category', 'title','text','tag']
     # success_url => get_abslute_url
 
 from django.urls import reverse_lazy
@@ -59,7 +59,7 @@ from django.utils.text import slugify
 class PostCreate(CreateView):
     model = Post
     template_name = 'post/post_create.html'
-    fields = ['title', 'text', 'tag']
+    fields = ['category', 'title', 'text', 'tag']
 
     def form_valid(self, form):
         # 작성자 매칭 - form.instance.author_id = self.request.user.id

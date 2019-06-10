@@ -6,5 +6,5 @@ class CommentForm(forms.ModelForm):
         fields = ['text','content_type','object_id']
         widgets = {
             'content_type': forms.HiddenInput(),
-            'object_id':forms.HiddenInput()
+            'object_id':forms.HiddenInput(),
         }

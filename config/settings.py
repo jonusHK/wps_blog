@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*-u0wmbgbqel!9y8&f#=04397+2t-%+_bm*$lt2(53)%q((ihs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['pythonanywhere', '127.0.0.1', '*']
 
 
 # Application definition
@@ -135,3 +135,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 INTERNAL_IPS = ['127.0.0.1']
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
