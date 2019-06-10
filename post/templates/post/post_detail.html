@@ -23,6 +23,7 @@
         {% endif %}
 
         <hr>
+        <!-- comment 앱 > templatetags > comment.py 호출 -->
         {% load comment%}
         {% show_comment content_type=object object_id=object.id %}
     </div>

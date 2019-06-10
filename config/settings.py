@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*-u0wmbgbqel!9y8&f#=04397+2t-%+_bm*$lt2(53)%q((ihs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['pythonanywhere', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['.pythonanywhere', 'localhost','127.0.0.1', '*']
 
 
 # Application definition
@@ -127,12 +127,36 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+AWS_ACCESS_KEY_ID = 'AKIAZR3IWTCZWC4AV645'
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_REGION = 'ap-northeast-2'
+AWS_STORAGE_BUCKET_NAME = 'staticwpsblog.wpsshool.site'
+AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME
+AWS_S3_SECURE_URLS = False
+
+AWS_S3_FILE_OVERWRITE = False
+
+AWS_QUERYSTRING_AUTH = False
+
+AWS_S3_OBJECT_PARAMETERS = {
+   'CacheControl': 'max-age=86400',
+}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 INTERNAL_IPS = ['127.0.0.1']
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_USER = True
 
