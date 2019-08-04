@@ -11,18 +11,12 @@
             <button class="btn btn-link" type="button" data-toggle="collapse"
                     data-target=".category_sub_{{category.id}}" aria-expanded="false">
                 <small>{{category}}</small>
-                <span class="badge badge-primary badge-pill">{{category.post_set.count}}</span>
+                <span class="badge badge-primary badge-pill">{{category.category_set.count}}</span>
             </button>
             {% endif %}
         </h2>
     </div>
 </div>
-{% comment %}
-//categories = Category.objects.filter(parent_category=None)
-//for category in categories:
-category = models.ForeignKey(Category, on_delete=models.SET_NULL, ...)
-category.category_set.all()
-{% endcomment%}
 
 {% if category.category_set %}
     {% with category.id as parent_id %}
